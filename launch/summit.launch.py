@@ -48,9 +48,9 @@ def start_simulator(context):
     
 def generate_launch_description():
 
-    pkg_path = get_package_share_directory("easynav_outdoor_testcase")
+    pkg_path = get_package_share_directory("parking_garage_world")
 
-    params_file = os.path.join(pkg_path,'robots_params','maps_manager.params.yaml')
+    params_file = os.path.join(pkg_path,'config','parking.params.yaml')
 
     declare_sim_cmd = DeclareLaunchArgument('sim', default_value='false', 
                                             description = 'Playground Summit Simulator')
@@ -63,7 +63,7 @@ def generate_launch_description():
             params_file,
         ],
         remappings=[
-            ('cmd_vel', 'robotnik_base_control/cmd_vel'),
+            ('/ray_tracing_cloud','/maps_manager_node/navmap/incoming_pc2_map'),
             ],
     )
 
