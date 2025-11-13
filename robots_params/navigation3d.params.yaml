@@ -1,3 +1,18 @@
+# maps_manager_node:
+#   ros__parameters:
+#     use_sim_time: true
+#     map_types: [bonxai, navmap]
+#     bonxai:
+#       freq: 10.0 
+#       plugin: easynav_bonxai_maps_manager/BonxaiMapsManager
+#       package: parking_garage_world
+#       bonxai_path_file: maps/bonxai_map.pcd
+#     navmap:
+#       freq: 10.0 
+#       plugin: easynav_navmap_maps_manager/NavMapMapsManager
+#       package: parking_garage_world
+#       navmap_path_file: maps/map.navmap
+
 maps_manager_node:
   ros__parameters:
     use_sim_time: true
@@ -5,13 +20,13 @@ maps_manager_node:
     bonxai:
       freq: 10.0 
       plugin: easynav_bonxai_maps_manager/BonxaiMapsManager
-      package: parking_garage_world
-      bonxai_path_file: maps/bonxai_map.pcd
+      package: urjc_excavation_world
+      bonxai_path_file: maps/excavation_urjc.pcd
     navmap:
       freq: 10.0 
       plugin: easynav_navmap_maps_manager/NavMapMapsManager
-      package: parking_garage_world
-      navmap_path_file: maps/map.navmap
+      package: urjc_excavation_world
+      navmap_path_file: maps/excavation_urjc.navmap
 
 localizer_node:
   ros__parameters:
@@ -44,22 +59,33 @@ planner_node:
       plugin: easynav_navmap_planner/AStarPlanner
       max_allowed_slope_deg: 20.0
 
+# controller_node:
+#   ros__parameters:
+#     use_sim_time: true
+#     controller_types: [mppi]
+#     mppi:
+#       plugin: easynav_mppi_controller/MPPIController
+#       num_samples: 100
+#       horizon_steps: 10	
+#       dt:	0.1	
+#       lambda:	0.1	
+#       max_linear_velocity:	1.0	
+#       max_angular_velocity:	1.0	
+#       max_linear_acceleration:	0.5	
+#       max_angular_acceleration:	1.0	
+#       fov:	1.57	
+#       safety_radius:	0.6	
+
 controller_node:
   ros__parameters:
     use_sim_time: true
-    controller_types: [mppi]
-    mppi:
-      plugin: easynav_mppi_controller/MPPIController
-      num_samples: 100
+    controller_types: [mpc]
+    mpc:
+      plugin: easynav_mpc_controller/MPCController
       horizon_steps: 10	
       dt:	0.1	
-      lambda:	0.1	
-      max_linear_velocity:	1.0	
+      max_linear_velocity:	1.5	
       max_angular_velocity:	1.0	
-      max_linear_acceleration:	0.5	
-      max_angular_acceleration:	1.0	
-      fov:	1.57	
-      safety_radius:	0.6	
 
 sensors_node:
   ros__parameters:
@@ -77,10 +103,10 @@ sensors_node:
       topic: imu/data
       type: sensor_msgs/msg/Imu 
 
-
 system_node:
   ros__parameters:
     use_sim_time: true
     use_real_time: false
-    position_tolerance: 0.3
+    position_tolerance: 0.5
     angle_tolerance: 0.15
+    

@@ -62,9 +62,9 @@ def generate_launch_description():
         parameters=[
             params_file,
         ],
-        remappings=[
-            ('/ray_tracing_cloud','/maps_manager_node/navmap/incoming_pc2_map'),
-            ],
+        # remappings=[
+        #     ('/ray_tracing_cloud','/maps_manager_node/navmap/incoming_pc2_map'),
+        #     ],
     )
 
     ld = LaunchDescription()
