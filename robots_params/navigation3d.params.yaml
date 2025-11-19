@@ -79,11 +79,13 @@ planner_node:
 controller_node:
   ros__parameters:
     use_sim_time: true
+    colision_checker:
+      active: false 
     controller_types: [mpc]
     mpc:
       plugin: easynav_mpc_controller/MPCController
       horizon_steps: 10	
-      dt:	0.1	
+      dt:	0.5	
       max_linear_velocity:	1.5	
       max_angular_velocity:	1.0	
 
