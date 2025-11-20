@@ -84,8 +84,9 @@ controller_node:
     controller_types: [mpc]
     mpc:
       plugin: easynav_mpc_controller/MPCController
-      horizon_steps: 10	
-      dt:	0.5	
+      verbose: true
+      horizon_steps: 5	
+      dt:	0.1	
       max_linear_velocity:	1.5	
       max_angular_velocity:	1.0	
 
